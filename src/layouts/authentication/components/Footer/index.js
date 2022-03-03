@@ -50,19 +50,19 @@ function Footer({ light }) {
             color={light ? "white" : "text"}
             fontSize={size.sm}
           >
-            &copy; {new Date().getFullYear()}, made with
+            &copy; {new Date().getFullYear()}, Inspirada en el Espíritu Santo de Dios
             <MDBox fontSize={size.md} color={light ? "white" : "dark"} mb={-0.5} mx={0.25}>
               <Icon color="inherit" fontSize="inherit">
                 favorite
               </Icon>
             </MDBox>
-            by
-            <Link href="https://www.creative-tim.com/" target="_blank">
+            Tekiah es un proyecto sin fines de lucro, pero tus
+            <Link href="https://www.google.com/" target="_blank">
               <MDTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
-                &nbsp;Creative Tim&nbsp;
+                &nbsp;Donaciones&nbsp;
               </MDTypography>
             </Link>
-            for a better web.
+            pueden bendecir el proyecto.
           </MDBox>
           <MDBox
             component="ul"

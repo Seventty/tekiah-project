@@ -44,17 +44,27 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 
+import News from "layouts/news";
+
 // @mui icons
 import Icon from "@mui/material/Icon";
 
 const routes = [
   {
     type: "collapse",
-    name: "Novedades",
+    name: "Estadisticas",
     key: "dashboard",
-    icon: <Icon fontSize="small">new_releases</Icon>,
+    icon: <Icon fontSize="small">bar_chart</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Novedades",
+    key: "news",
+    icon: <Icon fontSize="small">new_releases</Icon>,
+    route: "/news",
+    component: <News />,
   },
   {
     type: "collapse",
