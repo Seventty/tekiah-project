@@ -21,13 +21,13 @@ import { Link } from "react-router-dom";
 // @mui material components
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
-import Grid from "@mui/material/Grid";
+/* import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 
 // @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import GoogleIcon from "@mui/icons-material/Google";
+import GoogleIcon from "@mui/icons-material/Google"; */
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -35,16 +35,45 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
+// Snackbar notification
+//import MDSnackbar from "components/MDSnackbar";
+
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
-function Basic() {
-  const [rememberMe, setRememberMe] = useState(false);
+const initialForm = {
+  email: "",
+  password: "",
+}
 
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+function Basic() {
+    const [form, setForm] = useState(initialForm);
+    const [rememberMe, setRememberMe] = useState(false);
+    const [show, setShow] = useState(false);
+    
+
+    const handlerChange = (e) => {
+      setForm({
+          ...form,
+          [e.target.name]: e.target.value,
+      });      
+  
+  };
+
+  const handlerSubmit = (e) => {
+      e.preventDefault();
+
+      if(!form.email || !form.password){
+
+        console.log("Empty campos")
+          return;
+      }
+    };
+
+    const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
     <BasicLayout image={bgImage}>
@@ -60,34 +89,17 @@ function Basic() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="body1" fontFamily="Praise" style={{"font-size": "60px"}} fontWeight="false" color="white" mt={1}>
+          <MDTypography variant="body1" fontFamily="Praise" style={{"fontSize": "60px"}}  color="white" mt={1}>
             Tekiah
           </MDTypography>
-          <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-            <Grid item xs={2}>
-              <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                <FacebookIcon color="inherit" />
-              </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                <GitHubIcon color="inherit" />
-              </MDTypography>
-            </Grid>
-            <Grid item xs={2}>
-              <MDTypography component={MuiLink} href="#" variant="body1" color="white">
-                <GoogleIcon color="inherit" />
-              </MDTypography>
-            </Grid>
-          </Grid>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handlerSubmit}>
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput type="email" name="email" label="Email" fullWidth onChange={handlerChange} value={form.email}/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput type="password" name="password" label="Contraseña" fullWidth onChange={handlerChange} value={form.password}/>
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -101,8 +113,22 @@ function Basic() {
                 &nbsp;&nbsp;Recuerdame
               </MDTypography>
             </MDBox>
-            <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+            <MDBox textAlign="center">
+              <MDTypography variant="button" color="text">
+                <MDTypography
+                  component={Link}
+                  to="/authentication/reset-password/cover"
+                  variant="button"
+                  color="info"
+                  fontWeight="medium"
+                  textGradient
+                >
+                  ¿Has olvidado tu contraseña?
+                </MDTypography>
+              </MDTypography>
+            </MDBox>
+            <MDBox mt={1} mb={1}>
+              <MDButton type="submit" variant="gradient" color="info" fullWidth>
                 Inicia Sesión
               </MDButton>
             </MDBox>

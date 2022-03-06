@@ -43,6 +43,7 @@ import Notifications from "layouts/notifications";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import Reset from "layouts/authentication/reset-password/cover";
 
 import News from "layouts/news";
 
@@ -99,21 +100,32 @@ const routes = [
     component: <Profile />,
   },
   {
-    type: "collapse",
+    /* type: "collapse",
     name: "Sign In",
     key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
+    icon: <Icon fontSize="small">login</Icon>, */
+    key: "sign-in",
     route: "/authentication/sign-in",
     component: <SignIn />,
   },
   {
-    type: "collapse",
+    /* type: "collapse",
     name: "Sign Up",
     key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
+    icon: <Icon fontSize="small">assignment</Icon>, */
+    key: "sign-up",
     route: "/authentication/sign-up",
     component: <SignUp />,
   },
+  {
+/*     type: "collapse",
+    name: "Reset password",
+    key: "key",
+    icon: <Icon fontSize="small">key</Icon>, */
+    key: "key",
+    route: "/authentication/reset-password/cover",
+    component: <Reset />,
+  }, 
 ];
 
 export default routes;
