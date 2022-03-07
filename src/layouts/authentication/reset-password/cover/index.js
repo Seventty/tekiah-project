@@ -44,10 +44,10 @@ function Cover() {
           textAlign="center"
         >
           <MDTypography variant="h3" fontWeight="medium" color="white" mt={1}>
-            Reset Password
+            Reiniciar contraseña
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            You will receive an e-mail in maximum 60 seconds
+            Recibiras un correo de recuperacion en los proximos 60 segundos
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>

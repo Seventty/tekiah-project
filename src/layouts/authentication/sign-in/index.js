@@ -36,7 +36,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Snackbar notification
-//import MDSnackbar from "components/MDSnackbar";
+import MDSnackbar from "components/MDSnackbar";
 
 // Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
@@ -52,24 +52,26 @@ const initialForm = {
 function Basic() {
     const [form, setForm] = useState(initialForm);
     const [rememberMe, setRememberMe] = useState(false);
-    const [show, setShow] = useState(false);
-    
+
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
+   
 
     const handlerChange = (e) => {
       setForm({
           ...form,
           [e.target.name]: e.target.value,
       });      
-  
   };
 
   const handlerSubmit = (e) => {
       e.preventDefault();
 
       if(!form.email || !form.password){
-
-        console.log("Empty campos")
-          return;
+        setError(!error);
+        return;
+      }else{
+        setSuccess(!success);
       }
     };
 
@@ -77,6 +79,26 @@ function Basic() {
 
   return (
     <BasicLayout image={bgImage}>
+      <MDSnackbar
+      color="error"
+      icon="warning"
+      title="Notificación Tekiah"
+      content="Introduce ambos campos."
+      open={error}
+      onClose={handlerSubmit}
+      close={handlerSubmit}
+      bgWhite
+    />
+    <MDSnackbar
+      color="success"
+      icon="check"
+      title="Notificación Tekiah"
+      content="Acceso a cuenta realizado"
+      open={success}
+      onClose={handlerSubmit}
+      close={handlerSubmit}
+      bgWhite
+    />
       <Card>
         <MDBox
           variant="gradient"
@@ -96,7 +118,7 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form" onSubmit={handlerSubmit}>
             <MDBox mb={2}>
-              <MDInput type="email" name="email" label="Email" fullWidth onChange={handlerChange} value={form.email}/>
+              <MDInput type="email" name="email" label="Correo electrónico" fullWidth onChange={handlerChange} value={form.email}/>
             </MDBox>
             <MDBox mb={2}>
               <MDInput type="password" name="password" label="Contraseña" fullWidth onChange={handlerChange} value={form.password}/>
