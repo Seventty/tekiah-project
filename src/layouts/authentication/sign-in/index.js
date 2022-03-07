@@ -85,6 +85,7 @@ function Basic() {
       title="Notificación Tekiah"
       content="Introduce ambos campos."
       open={error}
+      dateTime=""
       onClose={handlerSubmit}
       close={handlerSubmit}
       bgWhite
@@ -95,6 +96,7 @@ function Basic() {
       title="Notificación Tekiah"
       content="Acceso a cuenta realizado"
       open={success}
+      dateTime=""
       onClose={handlerSubmit}
       close={handlerSubmit}
       bgWhite

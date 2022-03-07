@@ -51,7 +51,7 @@ function Cover() {
             Únete a Tekiah hoy
           </MDTypography>
           <MDTypography display="block" variant="button" color="white" my={1}>
-            Introduce tu email y contraseña para registrarte
+            Llena los campos para empezar a administrar tu Iglesia
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
@@ -66,7 +66,10 @@ function Cover() {
               <MDInput type="email" name="email" label="Correo electrónico " variant="standard" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" variant="standard" fullWidth />
+              <MDInput type="password" name="password" label="Contraseña" variant="standard" fullWidth />
+            </MDBox>
+            <MDBox mb={2}>
+              <MDInput type="password" name="confirm-password" label="Confirmar contraseña" variant="standard" fullWidth />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Checkbox />
@@ -105,7 +108,7 @@ function Cover() {
                   fontWeight="medium"
                   textGradient
                 >
-                  Iniciar sesión
+                  Inicia sesión
                 </MDTypography>
               </MDTypography>
             </MDBox>
