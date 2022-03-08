@@ -13,6 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { useState } from "react";
+
 // react-router-dom components
 import { Link } from "react-router-dom";
 
@@ -26,15 +28,75 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
+// Snackbar notification
+import MDSnackbar from "components/MDSnackbar";
+
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
 
+const initialForm = {
+  name: "",
+  lastname: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  termsAndConditional: false,
+}
+
 function Cover() {
+  const [form, setForm] = useState(initialForm);
+  const [error, setError] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+    const handlerChange = (e) => {
+      setForm({
+          ...form,
+          [e.target.name]: e.target.value,
+      });      
+  };
+
+  const handlerSubmit = (e) => {
+      e.preventDefault();
+      
+      if(!form.name || !form.lastname || !form.email || !form.password || !form.confirmPassword || !checked){
+        setError(!error);
+      }else{
+        setSuccess(!success);
+      }
+    };
+
+    const onCheckedChange = (e) => {
+      setChecked(e.target.checked);
+    }
+
   return (
     <CoverLayout image={bgImage}>
+      <MDSnackbar
+      color="error"
+      icon="warning"
+      title="Notificación Tekiah"
+      content="Llena todos los campos para continuar con el registro (no olvides marcar terminos y condiciones)"
+      open={error}
+      dateTime=""
+      onClose={handlerSubmit}
+      close={handlerSubmit}
+      bgWhite
+    />
+    <MDSnackbar
+      color="success"
+      icon="check"
+      title="Notificación Tekiah"
+      content="Acceso a cuenta realizado"
+      open={success}
+      dateTime=""
+      onClose={handlerSubmit}
+      close={handlerSubmit}
+      bgWhite
+    />
       <Card>
         <MDBox
           variant="gradient"
@@ -55,24 +117,27 @@ function Cover() {
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
+          <MDBox component="form" role="form" onSubmit={handlerSubmit}>
             <MDBox mb={2}>
-              <MDInput type="text" name="name" label="Nombre" variant="standard" fullWidth />
+              <MDInput type="text" name="name" label="Nombre" variant="standard" fullWidth onChange={handlerChange} value={form.name}/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="text" name="lastname" label="Apellido" variant="standard" fullWidth />
+              <MDInput type="text" name="lastname" label="Apellido" variant="standard" fullWidth onChange={handlerChange} value={form.lastname}/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="email" name="email" label="Correo electrónico " variant="standard" fullWidth />
+              <MDInput type="email" name="email" label="Correo electrónico " variant="standard" fullWidth onChange={handlerChange} value={form.email}/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" name="password" label="Contraseña" variant="standard" fullWidth />
+              <MDInput type="password" name="password" label="Contraseña" variant="standard" fullWidth onChange={handlerChange} value={form.password}/>
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" name="confirm-password" label="Confirmar contraseña" variant="standard" fullWidth />
+              <MDInput type="password" name="confirmPassword" label="Confirmar contraseña" variant="standard" fullWidth onChange={handlerChange} value={form.confirmPassword}/>
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
-              <Checkbox />
+              <Checkbox 
+                checked={checked}
+                onChange={onCheckedChange}
+                />
               <MDTypography
                 variant="button"
                 fontWeight="regular"
@@ -92,13 +157,23 @@ function Cover() {
                 Términos y Condiciones
               </MDTypography>
             </MDBox>
-            <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+            {
+              !checked 
+              ?
+              <MDBox mt={-1} mb={1} textAlign="center">
+                <MDTypography  variant="caption" color="error">
+                  Acepta términos y condiciones para continuar
+                </MDTypography>
+              </MDBox>
+              : ""
+            }
+            <MDBox mt={2} mb={1}>
+              <MDButton type="submit" variant="gradient" color="info" fullWidth>
                 Iniciar sesión
               </MDButton>
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
-              <MDTypography variant="button" color="text">
+              <MDTypography  variant="button" color="text">
                 ¿Ya tienes una cuenta?{" "}
                 <MDTypography
                   component={Link}

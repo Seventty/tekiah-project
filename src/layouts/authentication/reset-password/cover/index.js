@@ -97,11 +97,11 @@ function Cover() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="h3" fontWeight="medium" color="white" mt={1}>
+          <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
             Reiniciar contraseña
           </MDTypography>
-          <MDTypography display="block" variant="button" color="white" my={1}>
-            Recibiras un correo de recuperacion en los proximos 60 segundos
+          <MDTypography display="block" fontWeight="medium" variant="caption" color="white" my={1}>
+            Recibirás un correo de recuperación en los próximos 60 segundos
           </MDTypography>
         </MDBox>
         <MDBox pt={4} pb={3} px={3}>
@@ -117,7 +117,6 @@ function Cover() {
                   variant="button"
                   color="text"
                   fontWeight="medium"
-                  
                 >
                   Ir al inicio de sesión
                 </MDTypography>

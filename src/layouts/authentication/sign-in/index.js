@@ -43,6 +43,7 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import shofar from "assets/images/illustrations/shofar_white.svg";
 
 const initialForm = {
   email: "",
@@ -113,7 +114,8 @@ function Basic() {
           mb={1}
           textAlign="center"
         >
-          <MDTypography variant="body1" fontFamily="Praise" style={{"fontSize": "60px"}}  color="white" mt={1}>
+          <MDBox component="img" src={shofar} alt="shofar icon" width="60%" mt={-6} />
+          <MDTypography variant="body1" fontFamily="Praise" style={{"fontSize": "40px"}}  color="white" mt={-8}>
             Tekiah
           </MDTypography>
         </MDBox>
