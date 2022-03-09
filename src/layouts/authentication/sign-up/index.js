@@ -137,6 +137,7 @@ function Cover() {
           p={3}
           mb={1}
           textAlign="center"
+          
         >
           <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
             Únete a Tekiah hoy
@@ -220,6 +221,7 @@ function Cover() {
           </MDBox>
         </MDBox>
       </Card>
+      <MDBox mt={3}/>
     </CoverLayout>
   );
 }
