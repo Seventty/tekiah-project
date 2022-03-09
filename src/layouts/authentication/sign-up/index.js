@@ -31,11 +31,17 @@ import MDButton from "components/MDButton";
 // Snackbar notification
 import MDSnackbar from "components/MDSnackbar";
 
+// Modal component
+import Modal from "components/ModalComponent";
+
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-up-cover.jpeg";
+
+//Importing the text
+import TermsAndConditional from "assets/text/TermsAndConditions.txt";
 
 const initialForm = {
   name: "",
@@ -51,6 +57,8 @@ function Cover() {
   const [error, setError] = useState(false);
   const [checked, setChecked] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [modalState, setModalState] = useState(false);
+  const [termsAndConditionalText, setTermsAndConditionalText] = useState("");
 
     const handlerChange = (e) => {
       setForm({
@@ -71,6 +79,16 @@ function Cover() {
 
     const onCheckedChange = (e) => {
       setChecked(e.target.checked);
+    }
+
+    const onModalClick = (e) => {
+      setModalState(!modalState);
+      fetch(TermsAndConditional)
+        .then(r => r.text())
+        .then(text => {
+          setTermsAndConditionalText(text);
+          console.log(termsAndConditionalText);
+      });
     }
 
   return (
@@ -95,6 +113,17 @@ function Cover() {
       dateTime=""
       onClose={handlerSubmit}
       close={handlerSubmit}
+      bgWhite
+    />
+    <Modal
+      color="info"
+      icon="gavel"
+      title="Terminos y condiciones legales"
+      content={termsAndConditionalText}
+      open={modalState}
+      dateTime=""
+      onClose={onModalClick}
+      close={onModalClick}
       bgWhite
     />
       <Card>
@@ -142,17 +171,18 @@ function Cover() {
                 variant="button"
                 fontWeight="regular"
                 color="text"
-                sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
+                sx={{ userSelect: "none", ml: -1 }}
               >
                 &nbsp;&nbsp;Acepto&nbsp;
               </MDTypography>
               <MDTypography
                 component="a"
-                href="#"
                 variant="button"
                 fontWeight="bold"
                 color="info"
                 textGradient
+                onClick={onModalClick}
+                sx={{ cursor: "pointer", userSelect: "none"}}
               >
                 Términos y Condiciones
               </MDTypography>
