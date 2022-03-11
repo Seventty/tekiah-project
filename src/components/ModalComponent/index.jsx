@@ -27,11 +27,14 @@ import Fade from "@mui/material/Fade";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
+
+
 // Custom styles for the MDSnackbar
 import MDSnackbarIconRoot from "components/MDSnackbar/MDSnackbarIconRoot";
 
 // Material Dashboard 2 React context
 import { useMaterialUIController } from "context";
+
 
 function Modal({ color, icon, title, dateTime, content, close, bgWhite, ...rest }) {
   const [controller] = useMaterialUIController();
@@ -141,7 +144,7 @@ function Modal({ color, icon, title, dateTime, content, close, bgWhite, ...rest 
             },
           }}
         >
-          <MDTypography variant="body2" >{content}</MDTypography>
+          <MDTypography variant="body2" fontWeight="light">{content}</MDTypography>
         </MDBox>
       </MDBox>
     </Snackbar>
