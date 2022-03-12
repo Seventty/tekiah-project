@@ -157,7 +157,6 @@ function Cover() {
   const [passwordUnConfirmed, setPasswordUnConfirmed] = useState(null);
   const [error, setError] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [modalState, setModalState] = useState(false);
   const [termsAndConditionalText, setTermsAndConditionalText] = useState("");
   const [activeStep, setActiveStep] = useState(0);
@@ -179,8 +178,11 @@ function Cover() {
       }else{
           if(form.password === form.confirmPassword){
           activeStep === 3 ? setActiveStep(0) : setActiveStep(activeStep + 1)
-          activeStep === 2 && setSuccess(!success)
           setPasswordUnConfirmed(false);
+
+          if(!churchForm.churchName || !churchForm.denomination || !churchForm.phone || !churchForm.foundingPastor || !churchForm.currentPastor || !churchForm.location){
+            setError(!error);
+          }
         }else{
           setPasswordUnConfirmed(true);
         }
@@ -215,19 +217,8 @@ function Cover() {
       color="error"
       icon="warning"
       title="Notificación Tekiah"
-      content="Llena todos los campos para continuar con el registro (no olvides marcar terminos y condiciones)"
+      content="Llena todos los campos para continuar con el registro"
       open={error}
-      dateTime=""
-      onClose={handlerSubmit}
-      close={handlerSubmit}
-      bgWhite
-    />
-    <MDSnackbar
-      color="success"
-      icon="check"
-      title="Notificación Tekiah"
-      content="Registro completado, bienvenido a Tekiah."
-      open={success}
       dateTime=""
       onClose={handlerSubmit}
       close={handlerSubmit}
@@ -393,12 +384,20 @@ function Cover() {
             }
 
             <MDBox mt={2} mb={1}>
-              <MDButton type="submit" variant="gradient" color="info" fullWidth>
-                Continuar
-              </MDButton>
+              {
+                activeStep !== 3 
+                ?
+                  <MDButton type="submit" variant="gradient" color="info" fullWidth>
+                    Continuar
+                  </MDButton>
+                :
+                <MDButton component={Link} to="/authentication/sign-in"type="submit" variant="gradient" color="info" fullWidth>
+                  Ir al inicio de sesion
+                </MDButton>
+              }
             </MDBox>
             <MDBox mt={3} mb={1} textAlign="center">
-              <MDTypography  variant="button" color="text">
+              <MDTypography variant="button" color="text">
                 ¿Ya tienes una cuenta?{" "}
                 <MDTypography
                   component={Link}
