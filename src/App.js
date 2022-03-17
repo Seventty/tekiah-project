@@ -132,27 +132,27 @@ export default function App() {
     </MDBox>
   );
 
-  return(
-    <ThemeProvider theme={darkMode ? themeDark : theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brandName="Nombre de Iglesia aquí"
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-          <Configurator />
-          {configsButton}
-        </>
-      )}
-      {layout === "vr" && <Configurator />}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="authentication/sign-in" />} />
-      </Routes>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={darkMode ? themeDark : theme}>
+            <CssBaseline />
+            {layout === "dashboard" && (
+                <>
+                    <Sidenav
+                        color={sidenavColor}
+                        brandName="Nombre de Iglesia aquí"
+                        routes={routes}
+                        onMouseEnter={handleOnMouseEnter}
+                        onMouseLeave={handleOnMouseLeave}
+                    />
+                    <Configurator />
+                    {configsButton}
+                </>
+            )}
+            {layout === "vr" && <Configurator />}
+            <Routes>
+                {getRoutes(routes)}
+                <Route path="*" element={<Navigate to="authentication/sign-in" />} />
+            </Routes>
+        </ThemeProvider>
+    );
 }

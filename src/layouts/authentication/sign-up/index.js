@@ -48,7 +48,7 @@ import StepConnector, { stepConnectorClasses } from "@mui/material/StepConnector
 import Check from "@mui/icons-material/Check";
 
 //Importing form components
-import PastorForm from './Form/PastorForm';
+import PastorForm from './Form/PastorForm'
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -127,8 +127,6 @@ const steps = ["Datos del pastor", "Datos de la Iglesia", "Dios te bendiga"];
 function Cover() {
   const [activeStep, setActiveStep] = useState(0);
 
-
-
   const handlerActiveNextStep = (__) => {
     setActiveStep(activeStep === 3 ? 0 : activeStep + 1);
   };
@@ -167,7 +165,6 @@ function Cover() {
         {/* Aqui termina el stepper */}
         <MDBox pt={4} pb={3} px={3} mt={-1}>
           <MDBox component="form" role="form">
-            <PastorForm />
             <MDBox mt={2} mb={1}>
               <MDButton variant="gradient" color="info" fullWidth onClick={handlerActiveNextStep}>
                 Continuar
